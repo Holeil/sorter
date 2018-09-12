@@ -1,6 +1,6 @@
 class Sorter {
   constructor() {
-    this.array = [];
+    this.array = new Array();
   }
 
   add(element) {
@@ -20,20 +20,15 @@ class Sorter {
   }
 
   sort(indices) {
-    var a;
-    for(var x=0; x < indices.length; x++) {
-      for(var y=x+1; y < indices.length; y++) {
-        if(indices[x] > indices[y]) {
-          a = indices[y];
-          indices[y] = indices[x];
-          indices[x] = a;
-        }
-      }
+    function compareNumeric(a, b) {
+      if (a > b) return 1;
+      if (a < b) return -1;
     }
+    indices.sort(compareNumeric);
     for(var x=0; x < indices.length; x++) {
       for(var y=x+1; y < indices.length; y++) {
         if(this.array[indices[x]] > this.array[indices[y]]) {
-          a = this.array[indices[y]];
+          let a = this.array[indices[y]];
           this.array[indices[y]] = this.array[indices[x]];
           this.array[indices[x]] = a;
         }
